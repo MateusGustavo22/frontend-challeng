@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #f0f0f5;
+  --logo-color: #5d5d6d;
+  --text-apoio: #737380;
+  --text-input: #41414d;
+  --text-dark: #41414d;
+  --text-tooltip: #09090a;
+  --shapes-light: #E9E9F0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  font-size: 1rem;
+}
+
+.main_container {
+  max-width: 1120px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  padding-bottom: 60px;
+  flex-direction: column;
+  align-items: center;
+}
