@@ -4,12 +4,15 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 256px;
   background-color: white;
-`;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
-const Image = styled.div`
-  width: 100%;
-  min-height: 300px;
-  background-color: gray;
+  img {
+    width: 256px;
+    height: 300px;
+  }
 `;
 
 const Info = styled.div`
@@ -37,14 +40,21 @@ const Price = styled.span`
   font-weight: 600;
 `;
 
-export default function ProductCard() {
+interface ProductProps {
+  id?: number;
+  name: string;
+  image_url?: string;
+  price: string
+}
+
+export default function ProductCard({ id, name, image_url, price }: ProductProps) {
   return (
     <Container>
-      <Image></Image>
+      <img src={image_url} />
       <Info>
-        <Name>Caneca de cerâmica rústica</Name>
+        <Name>{name}</Name>
         <Line></Line>
-        <Price>R$ 40,00</Price>
+        <Price>{price}</Price>
       </Info>
     </Container>
   );

@@ -1,4 +1,8 @@
-export default function ArrowDown() {
+interface arrowColor {
+  color: string
+}
+
+export default function ArrowDown({ color = "#737380" }:arrowColor) {
   return (
     <svg
       width="24"
@@ -9,10 +13,10 @@ export default function ArrowDown() {
     >
       <path
         d="M8 10L12 14L16 10"
-        stroke="#737380"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

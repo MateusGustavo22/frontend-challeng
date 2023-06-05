@@ -1,13 +1,14 @@
 "use client";
-import styled from "styled-components";
+import styled from "styled-components"
 import { Saira_Stencil_One } from "next/font/google";
-import CartButton from "./CartButton";
 import SearchInput from "./SearchInput";
+import CartButton from "./CartButton";
 
 const sairaStencil = Saira_Stencil_One({
   weight: ["400"],
   subsets: ["latin"],
   display: "swap",
+  variable: '--saira-stencil'
 });
 
 const HeaderFullArea = styled.div`
@@ -20,6 +21,7 @@ const Logo = styled.a`
   color: var(--logo-color);
   font-size: 2.5rem;
   text-decoration: none;
+  font-family: sans-serif;     
 `;
 
 const MaxContentWidth = styled.div`
@@ -51,7 +53,7 @@ export default function Header() {
     <HeaderFullArea>
       <MaxContentWidth>
         <LeftSection>
-          <Logo className={sairaStencil.className} href="/">
+          <Logo href="/">
             Capputeeno
           </Logo>
         </LeftSection>

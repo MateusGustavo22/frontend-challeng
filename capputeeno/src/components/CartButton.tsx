@@ -6,6 +6,7 @@ export default function CartButton() {
     padding: 4px;
     display: flex;
     position: relative;
+    cursor: pointer;
   `;
 
   const Count = styled.span`
