@@ -13,10 +13,10 @@ const Container = styled.div`
   margin-bottom: 32px;
 `;
 
-interface ProductProps {
-  id?: number;
+interface ProductType {
+  id: number;
   name: string;
-  image_url?: string;
+  image_url: string;
   price_in_cents: number
 }
 
@@ -27,7 +27,7 @@ export default function ProductList() {
     <Container>
       {products ? (
         products.map(
-          (item:ProductProps) => (
+          (item:ProductType) => (
             <ProductCard
               key={item.id}
               name={item.name}
@@ -37,7 +37,7 @@ export default function ProductList() {
           )
         )
       ) : (
-        <span>Carregando</span>
+        <span>Carregando...</span>
       )}
     </Container>
   );

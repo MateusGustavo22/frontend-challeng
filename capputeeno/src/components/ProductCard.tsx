@@ -40,14 +40,14 @@ const Price = styled.span`
   font-weight: 600;
 `;
 
-interface ProductProps {
+ interface ProductProps {
   id?: number;
   name: string;
-  image_url?: string;
+  image_url: string;
   price: string
 }
 
-export default function ProductCard({ id, name, image_url, price }: ProductProps) {
+export default function ProductCard({ name, image_url, price }: ProductProps) {
   return (
     <Container>
       <img src={image_url} />

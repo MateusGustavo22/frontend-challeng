@@ -1,25 +1,37 @@
-import { createContext, useState } from "react"
+"use client";
+import { ReactNode, createContext, useState } from "react";
+import { FilterNames } from "@/types/types-names";
 
-enum filterCategory {
-  'ALL',
-  'SHIRT',
-  'MUG'
+interface ProviderProps {
+  children: ReactNode;
 }
 
-const FilterContext = createContext({
-  search: '',
-  page: 0,
-  category: filterCategory.ALL
-})
+export const FilterContext = createContext({
+  productsType: FilterNames.ALL,
+  productsPriority: "sales",
+  productsOrder: "ASC",
+  setProductsType: (value: FilterNames) => {},
+  setProductsPriority: (value: string) => {},
+  setProductsOrder: (value: string) => {},
+});
 
-export default function filterContext() {
-  const [search, setSearch] = useState('')
-  const [page, setPage] = useState(0)
-  const [category, setCategory] = useState(filterCategory.ALL)
+export default function FilterProvider({ children }: ProviderProps) {
+  const [productsType, setProductsType] = useState(FilterNames.ALL);
+  const [productsPriority, setProductsPriority] = useState("price_in_cents");
+  const [productsOrder, setProductsOrder] = useState("DSC");
 
   return (
-    <FilterContext.Provider value={{search, page, category}}>
-
+    <FilterContext.Provider
+      value={{
+        productsType,
+        productsPriority,
+        productsOrder,
+        setProductsType,
+        setProductsPriority,
+        setProductsOrder,
+      }}
+    >
+      {children}
     </FilterContext.Provider>
-  )
+  );
 }
