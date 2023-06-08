@@ -1,5 +1,11 @@
 export enum FilterNames {
-  ALL = "all",
-  MUGS = "mugs",
-  TSHIRTS = "t-shirts",
+  ALL = 'all',
+  MUGS = 'mugs',
+  TSHIRTS = 't-shirts',
+}
+
+export enum FilterPriority {
+  BEST_SELLER = 'sales',
+  PRICE = 'price_in_cents',
+  NEWS = 'created_at',
 }

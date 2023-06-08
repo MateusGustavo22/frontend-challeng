@@ -2,17 +2,11 @@ import { useQuery, gql } from "@apollo/client";
 import { useContext } from "react";
 import { FilterContext } from "@/context/FilterContext";
 
-interface filterProps {
-  type: string;
-  organize: string;
-  order: string;
-}
-
 export default function useProducts() {
   const {productsType, productsPriority, productsOrder} = useContext(FilterContext)
 
   const ALL_PRODUCTS_QUERY = `query {
-    allProducts {
+    allProducts(sortField: "${productsPriority}", sortOrder: "${productsOrder}") {
       id
       name
       image_url
@@ -35,7 +29,7 @@ export default function useProducts() {
     ${productsType === 'all' ? ALL_PRODUCTS_QUERY : PRODUCTS_FOR_TYPE_QUERY}
   `;
 
-  const { data, loading } = useQuery(QUERY);
+  const { data } = useQuery(QUERY);
 
   return data?.allProducts;
 }
