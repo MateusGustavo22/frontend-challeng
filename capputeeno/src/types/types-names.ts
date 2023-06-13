@@ -9,3 +9,8 @@ export enum FilterPriority {
   PRICE = 'price_in_cents',
   NEWS = 'created_at',
 }
+
+export enum categoryNames {
+  't-shirts' = 'Camiseta',
+  'mugs' = 'Caneca',
+}

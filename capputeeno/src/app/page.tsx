@@ -10,7 +10,7 @@ export default function Home() {
     <ApolloProvider client={client}>
       <div className="main_container">
         <FilterBar />
-        <LoadMore />
+        
         <ProductList />
         <LoadMore />
       </div>

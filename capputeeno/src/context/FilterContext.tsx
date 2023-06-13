@@ -1,6 +1,6 @@
-"use client";
-import { ReactNode, createContext, useState } from "react";
-import { FilterNames, FilterPriority } from "@/types/types-names";
+'use client';
+import { ReactNode, createContext, useState } from 'react';
+import { FilterNames, FilterPriority } from '@/types/types-names';
 
 interface ProviderProps {
   children: ReactNode;
@@ -9,16 +9,19 @@ interface ProviderProps {
 export const FilterContext = createContext({
   productsType: FilterNames.ALL,
   productsPriority: FilterPriority.NEWS,
-  productsOrder: "",
+  productsOrder: '',
+  page: 0,
   setProductsType: (value: FilterNames) => {},
   setProductsPriority: (value: FilterPriority) => {},
   setProductsOrder: (value: string) => {},
+  setPage: (value: number) => {},
 });
 
 export default function FilterProvider({ children }: ProviderProps) {
   const [productsType, setProductsType] = useState(FilterNames.ALL);
   const [productsPriority, setProductsPriority] = useState(FilterPriority.NEWS);
-  const [productsOrder, setProductsOrder] = useState("");
+  const [productsOrder, setProductsOrder] = useState('');
+  const [page, setPage] = useState(0);
 
   return (
     <FilterContext.Provider
@@ -26,9 +29,11 @@ export default function FilterProvider({ children }: ProviderProps) {
         productsType,
         productsPriority,
         productsOrder,
+        page,
         setProductsType,
         setProductsPriority,
         setProductsOrder,
+        setPage,
       }}
     >
       {children}

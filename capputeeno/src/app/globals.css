@@ -13,6 +13,7 @@
   --search-bar: #F3F5F6;
   --text-dark: #41414d;
   --text-tooltip: #09090a;
+  --text-color: #617480;
   --shapes-light: #E9E9F0;
 }
 
@@ -25,6 +26,7 @@ body {
   max-width: 1120px;
   width: 100%;
   margin: auto;
+  position: relative;
   display: flex;
   padding-bottom: 60px;
   flex-direction: column;

@@ -1,9 +1,10 @@
-"use client";
-import styled from "styled-components";
-import ArrowDown from "./icons/arrow";
-import { useState } from "react";
+'use client';
+import styled from 'styled-components';
+import ArrowDown from './icons/arrow';
+import { useContext } from 'react';
+import { FilterContext } from '@/context/FilterContext';
 
-interface selectedPage {
+interface pagePage {
   active: boolean;
 }
 
@@ -23,17 +24,15 @@ const PageButtons = styled.div`
   gap: 2px;
 `;
 
-const Page = styled.div<selectedPage>`
+const Page = styled.div<pagePage>`
   width: 32px;
   height: 32px;
   padding: 4px;
   background-color: var(--shapes-light);
-  color: ${(props) =>
-    props.active ? "var(--orange-low);" : "var(--text-apoio);"};
+  color: ${(props) => (props.active ? 'var(--orange-low);' : 'var(--text-apoio);')};
   font-size: 1rem;
   border-radius: 8px;
-  border: ${(props) =>
-    props.active ? "1px solid var(--orange-low);" : "none;"};
+  border: ${(props) => (props.active ? '1px solid var(--orange-low);' : 'none;')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +44,7 @@ const NextButtons = styled.div`
   gap: 4px;
 `;
 
-const LastPage = styled.div<selectedPage>`
+const LastPage = styled.div<pagePage>`
   width: 32px;
   height: 32px;
   padding: 4px;
@@ -62,7 +61,7 @@ const LastPage = styled.div<selectedPage>`
   }
 `;
 
-const NextPage = styled.div<selectedPage>`
+const NextPage = styled.div<pagePage>`
   width: 32px;
   height: 32px;
   padding: 4px;
@@ -79,33 +78,37 @@ const NextPage = styled.div<selectedPage>`
 `;
 
 export default function LoadMore() {
-  const [selected, setSelected] = useState(0);
+  const {page, setPage } = useContext(FilterContext);
+
+  function handlePage(page:number) {
+    setPage(page)
+  }
 
   return (
     <Container>
       <PageButtons>
-        <Page active={selected === 1} onClick={() => setSelected(1)}>
+        <Page active={page === 1} onClick={() => handlePage(1)}>
           1
         </Page>
-        <Page active={selected === 2} onClick={() => setSelected(2)}>
+        <Page active={page === 2} onClick={() => handlePage(2)}>
           2
         </Page>
-        <Page active={selected === 3} onClick={() => setSelected(3)}>
+        <Page active={page === 3} onClick={() => handlePage(3)}>
           3
         </Page>
-        <Page active={selected === 4} onClick={() => setSelected(4)}>
+        <Page active={page === 4} onClick={() => handlePage(4)}>
           4
         </Page>
-        <Page active={selected === 5} onClick={() => setSelected(5)}>
+        <Page active={page === 5} onClick={() => handlePage(5)}>
           5
         </Page>
       </PageButtons>
       <NextButtons>
-        <LastPage active={selected === 6} onClick={() => setSelected(6)}>
-          <ArrowDown color={selected === 6 ? "var(--orange-low" : "#737380"} />
+        <LastPage active={page === 6} onClick={() => setPage(6)}>
+          <ArrowDown color={page === 6 ? 'var(--orange-low' : '#737380'} />
         </LastPage>
-        <NextPage active={selected === 7} onClick={() => setSelected(7)}>
-          <ArrowDown color={selected === 7 ? "var(--orange-low" : "#737380"} />
+        <NextPage active={page === 7} onClick={() => setPage(7)}>
+          <ArrowDown color={page === 7 ? 'var(--orange-low' : '#737380'} />
         </NextPage>
       </NextButtons>
     </Container>

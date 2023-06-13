@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { FilterContext } from "@/context/FilterContext";
 
 export default function useProducts() {
-  const {productsType, productsPriority, productsOrder} = useContext(FilterContext)
+  const {productsType, productsPriority, productsOrder, page} = useContext(FilterContext)
 
   const ALL_PRODUCTS_QUERY = `query {
-    allProducts(sortField: "${productsPriority}", sortOrder: "${productsOrder}") {
+    allProducts(sortField: "${productsPriority}", sortOrder: "${productsOrder}", page: ${page} perPage: 20) {
       id
       name
       image_url
@@ -16,7 +16,7 @@ export default function useProducts() {
   }`;
 
   const PRODUCTS_FOR_TYPE_QUERY = `query {
-    allProducts(filter: {category: "${productsType}"}, sortField: "${productsPriority}", sortOrder: "${productsOrder}") {
+    allProducts(filter: {category: "${productsType}"}, sortField: "${productsPriority}", sortOrder: "${productsOrder}", page: ${page} perPage: 20) {
       id
       name
       price_in_cents

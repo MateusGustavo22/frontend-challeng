@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ProductCard from "./ProductCard";
 import useProducts from "@/hooks/useProducts";
 import formatPrice from "@/utils/format-price";
+import LoadMore from "./LoadMore";
 
 const Container = styled.div`
   width: 100%;
@@ -11,6 +12,7 @@ const Container = styled.div`
   gap: 32px;
   margin-top: 32px;
   margin-bottom: 32px;
+  justify-content: center;
 `;
 
 interface ProductType {
@@ -25,11 +27,13 @@ export default function ProductList() {
 
   return (
     <Container>
+      <LoadMore />
       {products ? (
         products.map(
           (item:ProductType) => (
             <ProductCard
               key={item.id}
+              id={item.id}
               name={item.name}
               image_url={item.image_url}
               price={formatPrice(item.price_in_cents)}

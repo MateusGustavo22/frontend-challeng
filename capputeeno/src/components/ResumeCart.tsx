@@ -1,0 +1,121 @@
+'use client';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  max-width: 352px;
+  max-height: 700px;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 24px 16px 24px;
+`;
+
+const TopSection = styled.div`
+  width: 100%;
+`;
+
+const Resume = styled.span`
+  margin-bottom: 24px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  display: block;
+  margin-bottom: 30px;
+`;
+
+const BottomSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  bottom: 0;
+  gap: 12px;
+
+  a {
+    color: var(--text-apoio);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+`;
+
+const SubTotal = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-size: 1rem;
+    color: var(--text-dark);
+  }
+`;
+
+const Delivery = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+
+  span {
+    font-size: 1rem;
+    color: var(--text-dark);
+  }
+`;
+
+const Total = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+`;
+
+const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: var(--shapes-light);
+  margin-top: 24px;
+  margin-bottom: 8px;
+`;
+
+const FinalizeButton = styled.button`
+  width: 100%;
+  height: 44px;
+  background-color: #51b853;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  margin-top: 40px;
+  border-radius: 4px;
+`;
+
+export default function ResumeCart() {
+  return (
+    <Container>
+      <TopSection>
+        <Resume>RESUMO DO PEDIDO</Resume>
+        <SubTotal>
+          <span>Subtotal de produtos</span>
+          <span>R$ 161,00</span>
+        </SubTotal>
+        <Delivery>
+          <span>Entrega</span>
+          <span>R$ 40,00</span>
+        </Delivery>
+        <Line />
+        <Total>
+          <span>Total</span>
+          <span>R$ 201,00</span>
+        </Total>
+        <FinalizeButton>FINALIZAR A COMPRA</FinalizeButton>
+      </TopSection>
+      <BottomSection>
+        <a>AJUDA</a>
+        <a>REEMBOLSOS</a>
+        <a>ENTREGAS E FRETE</a>
+        <a>TROCAS E DEVOLUÇÔES</a>
+      </BottomSection>
+    </Container>
+  );
+}

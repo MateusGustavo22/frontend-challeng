@@ -1,5 +1,6 @@
-"use client";
-import styled from "styled-components";
+'use client';
+import styled from 'styled-components';
+import Link from 'next/link';
 
 const Container = styled.div`
   width: 256px;
@@ -40,17 +41,21 @@ const Price = styled.span`
   font-weight: 600;
 `;
 
- interface ProductProps {
+interface ProductProps {
   id?: number;
   name: string;
   image_url: string;
-  price: string
+  price: string;
 }
 
-export default function ProductCard({ name, image_url, price }: ProductProps) {
+export default function ProductCard({ id, name, image_url, price }: ProductProps) {
+  function productPage() {}
+
   return (
     <Container>
-      <img src={image_url} />
+      <Link href={`/product?id=${id}`}>
+        <img src={image_url} />
+      </Link>
       <Info>
         <Name>{name}</Name>
         <Line></Line>

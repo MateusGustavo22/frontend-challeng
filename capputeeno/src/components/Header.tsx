@@ -15,13 +15,19 @@ const HeaderFullArea = styled.div`
   width: 100%;
   height: 80px;
   background-color: white;
+  margin-bottom: 32px;
+  padding-left: 32px;
+  padding-right: 32px; 
+  position: sticky;
+  z-index: 50;
+  top: 0;
 `;
 
 const Logo = styled.a`
   color: var(--logo-color);
   font-size: 2.5rem;
   text-decoration: none;
-  font-family: sans-serif;     
+  font-family: sans-serif;    
 `;
 
 const MaxContentWidth = styled.div`
