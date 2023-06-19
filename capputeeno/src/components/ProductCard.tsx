@@ -22,17 +22,17 @@ const Info = styled.div`
   flex-direction: column;
   gap: 8px;
   padding: 8px 12px 8px 12px;
-`;
 
-const Name = styled.span`
-  font-size: 1rem;
-  color: var(--text-dark);
-`;
+  span {
+    font-size: 1rem;
+    color: var(--text-dark);
+  }
 
-const Line = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #dce2e6;
+  div {
+    width: 100%;
+    height: 1px;
+    background-color: #dce2e6;
+  }
 `;
 
 const Price = styled.span`
@@ -49,16 +49,14 @@ interface ProductProps {
 }
 
 export default function ProductCard({ id, name, image_url, price }: ProductProps) {
-  function productPage() {}
-
   return (
     <Container>
       <Link href={`/product?id=${id}`}>
-        <img src={image_url} />
+        <img src={image_url} alt='Imagem do produto'/>
       </Link>
       <Info>
-        <Name>{name}</Name>
-        <Line></Line>
+        <span>{name}</span>
+        <div></div>
         <Price>{price}</Price>
       </Info>
     </Container>

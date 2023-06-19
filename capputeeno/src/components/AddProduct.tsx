@@ -5,7 +5,7 @@ const Container = styled.div`
   width: 65px;
   height: 40px;
   background-color: #f3f5f6;
-  border: 1px solid var(--text-apoio);
+  border: 1px solid #A8A8B3;
   border-radius: 8px;
   display: flex;
   align-items: center;

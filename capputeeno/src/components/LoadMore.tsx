@@ -1,20 +1,16 @@
-'use client';
+
 import styled from 'styled-components';
 import ArrowDown from './icons/arrow';
 import { useContext } from 'react';
 import { FilterContext } from '@/context/FilterContext';
 
-interface pagePage {
+interface ButtonProps {
   active: boolean;
-}
-
-interface arrowColor {
-  color: string;
 }
 
 const Container = styled.div`
   width: 100%;
-  justify-content: right;
+  justify-content: end;
   display: flex;
   gap: 12px;
 `;
@@ -24,7 +20,7 @@ const PageButtons = styled.div`
   gap: 2px;
 `;
 
-const Page = styled.div<pagePage>`
+const Button = styled.div<ButtonProps>`
   width: 32px;
   height: 32px;
   padding: 4px;
@@ -44,24 +40,22 @@ const NextButtons = styled.div`
   gap: 4px;
 `;
 
-const LastPage = styled.div<pagePage>`
+const LastPage = styled.div<ButtonProps>`
   width: 32px;
   height: 32px;
   padding: 4px;
   background-color: var(--shapes-light);
   border-radius: 8px;
-  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
-  svg {
+  border: ${(props) => (props.active ? '1px solid var(--orange-low);' : 'none;')} svg {
     transform: rotate(90deg);
   }
 `;
 
-const NextPage = styled.div<pagePage>`
+const NextPage = styled.div<ButtonProps>`
   width: 32px;
   height: 32px;
   padding: 4px;
@@ -71,37 +65,36 @@ const NextPage = styled.div<pagePage>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
-  svg {
-    transform: rotate(-90deg);
+  border: ${(props) => (props.active ? '1px solid var(--orange-low);' : 'none;')} svg {
+    transform: rotate(90deg);
   }
 `;
 
 export default function LoadMore() {
-  const {page, setPage } = useContext(FilterContext);
+  const { page, setPage } = useContext(FilterContext);
 
-  function handlePage(page:number) {
-    setPage(page)
+  function handlePage(page: number) {
+    setPage(page);
   }
 
   return (
     <Container>
       <PageButtons>
-        <Page active={page === 1} onClick={() => handlePage(1)}>
+        <Button active={page === 1} onClick={() => handlePage(1)}>
           1
-        </Page>
-        <Page active={page === 2} onClick={() => handlePage(2)}>
+        </Button>
+        <Button active={page === 2} onClick={() => handlePage(2)}>
           2
-        </Page>
-        <Page active={page === 3} onClick={() => handlePage(3)}>
+        </Button>
+        <Button active={page === 3} onClick={() => handlePage(3)}>
           3
-        </Page>
-        <Page active={page === 4} onClick={() => handlePage(4)}>
+        </Button>
+        <Button active={page === 4} onClick={() => handlePage(4)}>
           4
-        </Page>
-        <Page active={page === 5} onClick={() => handlePage(5)}>
+        </Button>
+        <Button active={page === 5} onClick={() => handlePage(5)}>
           5
-        </Page>
+        </Button>
       </PageButtons>
       <NextButtons>
         <LastPage active={page === 6} onClick={() => setPage(6)}>

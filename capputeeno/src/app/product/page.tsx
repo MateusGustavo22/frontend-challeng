@@ -8,6 +8,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
 `;
 
 export default function ProductPage({ searchParams }: { searchParams: { id: string } }) {
@@ -17,7 +18,7 @@ export default function ProductPage({ searchParams }: { searchParams: { id: stri
     <ApolloProvider client={client}>
       <Container>
         <BackButton />
-        <Product id={productId} />
+        <Product productId={productId} />
       </Container>
     </ApolloProvider>
   );

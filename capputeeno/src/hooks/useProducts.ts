@@ -29,7 +29,7 @@ export default function useProducts() {
     ${productsType === 'all' ? ALL_PRODUCTS_QUERY : PRODUCTS_FOR_TYPE_QUERY}
   `;
 
-  const { data } = useQuery(QUERY);
+  const { data, loading } = useQuery(QUERY);
 
-  return data?.allProducts;
+  return {products: data?.allProducts, loading}
 }

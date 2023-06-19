@@ -1,6 +1,6 @@
-export default interface ProductType {
+export default interface ProductCardType {
   id: number;
   name: string;
   image_url: string;
-  price_in_cents: string
+  price_in_cents: number;
 }

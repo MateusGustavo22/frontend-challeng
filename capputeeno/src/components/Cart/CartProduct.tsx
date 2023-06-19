@@ -1,10 +1,12 @@
 'use client';
 import styled from 'styled-components';
-import AddProduct from './AddProduct';
+import AddProduct from '../AddProduct';
+import formatPrice from '@/utils/format-price';
+import ProductCartType from '@/types/products-cart';
 
 const Container = styled.div`
   max-width: 736px;
-  min-height: 211px;
+  max-height: 211px;
   background-color: white;
   position: relative;
   display: flex;
@@ -16,6 +18,11 @@ const ProductImage = styled.div`
   height: 211px;
   background-color: gray;
   flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const Info = styled.div`
@@ -43,6 +50,8 @@ const Name = styled.span`
 `;
 
 const Description = styled.p`
+  max-height: 64px;
+  overflow: hidden;
   font-size: 0.8125rem;
   color: var(--text-dark);
 `;
@@ -53,21 +62,29 @@ const Price = styled.span`
   font-weight: 600;
 `;
 
-export default function CartProduct() {
+interface Props {
+  name: string;
+  image_url: string;
+  price_in_cents: number;
+  description: string;
+}
+
+export default function CartProduct({ name, image_url, price_in_cents, description }: Props) {
+  const priceFormatted = formatPrice(price_in_cents);
+
   return (
     <Container>
-      <ProductImage></ProductImage>
+      <ProductImage>
+        <img src={image_url} alt="Imagem do produto" />
+      </ProductImage>
       <Product>
         <Info>
-          <Name>Caneca de cerâmica rústica</Name>
-          <Description>
-            Aqui vem um texto descritivo do produto, esta caixa de texto servirá apenas de exemplo para que simule algum
-            texto que venha a ser inserido nesse campo, descrevendo tal produto.
-          </Description>
+          <Name>{name}</Name>
+          <Description>{description}</Description>
         </Info>
         <ItemsSelected>
           <AddProduct />
-          <Price>R$ 40,00</Price>
+          <Price>{priceFormatted}</Price>
         </ItemsSelected>
       </Product>
     </Container>

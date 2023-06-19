@@ -3,6 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 export default function useProduct(id: string) {
   const PRODUCT_QUERY = gql`query {
     Product(id: "${id}"){
+      id
       name
       description
       category
@@ -11,7 +12,7 @@ export default function useProduct(id: string) {
     }
   }`;
 
-  const { data } = useQuery(PRODUCT_QUERY);
+  const { data, loading } = useQuery(PRODUCT_QUERY);
 
-  return data?.Product;
+  return { product: data?.Product, loading };
 }

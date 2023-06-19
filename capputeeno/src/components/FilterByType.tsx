@@ -2,11 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { FilterContext } from '@/context/FilterContext';
-import { FilterNames } from '@/types/types-names';
-
-interface FilterProps {
-  active: boolean;
-}
+import { FilterNames, categoryNames } from '@/types/types-names';
 
 const Container = styled.div`
   display: inline-flex;
@@ -28,12 +24,22 @@ const FilterItem = styled.li<FilterProps>`
   }
 `;
 
+interface FilterProps {
+  active: boolean;
+}
+
+enum Category {
+  ALL = 'TODOS OS PRODUTOS',
+  TSHIRTS = 'CAMISETAS',
+  MUGS = 'CANECAS',
+}
+
 export default function FilterByType() {
-  const [activeItem, setActiveItem] = useState('TODOS OS PRODUTOS');
+  const [activeItem, setActiveItem] = useState(Category.ALL);
 
   const { setProductsType } = useContext(FilterContext);
 
-  function handleType(type: FilterNames, text: string) {
+  function handleType(type: FilterNames, text: Category) {
     setActiveItem(text);
     setProductsType(type);
   }
@@ -41,16 +47,16 @@ export default function FilterByType() {
   return (
     <Container>
       <FilterItem
-        active={activeItem === 'TODOS OS PRODUTOS'}
-        onClick={() => handleType(FilterNames.ALL, 'TODOS OS PRODUTOS')}
+        active={activeItem === Category.ALL}
+        onClick={() => handleType(FilterNames.ALL, Category.ALL)}
       >
-        TODOS OS PRODUTOS
+        {Category.ALL}
       </FilterItem>
-      <FilterItem active={activeItem === 'CAMISETAS'} onClick={() => handleType(FilterNames.TSHIRTS, 'CAMISETAS')}>
-        CAMISETAS
+      <FilterItem active={activeItem === Category.TSHIRTS} onClick={() => handleType(FilterNames.TSHIRTS, Category.TSHIRTS)}>
+        {Category.TSHIRTS}
       </FilterItem>
-      <FilterItem active={activeItem === 'CANECAS'} onClick={() => handleType(FilterNames.MUGS, 'CANECAS')}>
-        CANECAS
+      <FilterItem active={activeItem === Category.MUGS} onClick={() => handleType(FilterNames.MUGS, Category.MUGS)}>
+        {Category.MUGS}
       </FilterItem>
     </Container>
   );

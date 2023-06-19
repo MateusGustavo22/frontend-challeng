@@ -1,9 +1,12 @@
 'use client';
+import { CartContext } from '@/context/CartContext';
+import formatPrice from '@/utils/format-price';
+import { useContext } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
   max-width: 352px;
-  max-height: 700px;
+  height: 700px;
   width: 100%;
   background-color: white;
   display: flex;
@@ -42,6 +45,7 @@ const BottomSection = styled.div`
 const SubTotal = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 12px;
 
   span {
     font-size: 1rem;
@@ -91,13 +95,18 @@ const FinalizeButton = styled.button`
 `;
 
 export default function ResumeCart() {
+  const { products, totalPrice } = useContext(CartContext);
+  const TotalPriceFormatted = formatPrice(totalPrice);
+  const FRETE_IN_CENTS = 40 * 100;
+  const totalPriceWithFreight = formatPrice(totalPrice + FRETE_IN_CENTS);
+
   return (
     <Container>
       <TopSection>
         <Resume>RESUMO DO PEDIDO</Resume>
         <SubTotal>
           <span>Subtotal de produtos</span>
-          <span>R$ 161,00</span>
+          <span>{TotalPriceFormatted}</span>
         </SubTotal>
         <Delivery>
           <span>Entrega</span>
@@ -106,7 +115,7 @@ export default function ResumeCart() {
         <Line />
         <Total>
           <span>Total</span>
-          <span>R$ 201,00</span>
+          <span>{totalPriceWithFreight}</span>
         </Total>
         <FinalizeButton>FINALIZAR A COMPRA</FinalizeButton>
       </TopSection>

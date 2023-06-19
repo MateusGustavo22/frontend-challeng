@@ -4,12 +4,18 @@ import { useState, useContext, useEffect, useRef } from 'react';
 import { FilterContext } from '@/context/FilterContext';
 import { FilterPriority } from '@/types/types-names';
 
-interface FilterBox {
+interface FilterBoxProps {
   active: boolean;
 }
 
 interface optionsActive {
   active?: boolean;
+}
+
+interface PriorityTypes {
+  type: FilterPriority;
+  text: PriceOrder;
+  order: string;
 }
 
 const Container = styled.div`
@@ -38,7 +44,7 @@ const Options = styled.li<optionsActive>`
   }
 `;
 
-const FilterBox = styled.div<FilterBox>`
+const FilterBox = styled.div<FilterBoxProps>`
   min-width: 176px;
   background-color: white;
   padding: 12px 16px 12px 16px;
@@ -53,65 +59,62 @@ const FilterBox = styled.div<FilterBox>`
   gap: 8px;
 `;
 
+enum PriceOrder {
+  HIGHEST_LOWEST = 'Preço: Maior - menor',
+  LOWEST_HIGHEST = 'Preço: Menor - maior',
+  BESTSELLERS = 'Mais vendidos',
+  NEWS = 'Novidades',
+}
+
 export default function FilterByPrice() {
-  const [selected, setSelected] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState('Organizar Por');
   const [filterBox, setFilterBox] = useState(false);
   const filterRef = useRef<HTMLDivElement>(null);
 
   const { setProductsPriority, setProductsOrder } = useContext(FilterContext);
 
   function handleFilterBox() {
-    if (filterBox === false) {
-      setFilterBox(true);
-    }
+    setFilterBox(!filterBox)
   }
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
-        setFilterBox(false);
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  function handlePriority(type: FilterPriority, text: string, order: string) {
+  function handlePriority({ type, text, order }: PriorityTypes) {
     setProductsPriority(type);
-    setProductsOrder(order)
-    setSelected(text);
+    setProductsOrder(order);
+    setSelectedOptions(text);
   }
 
   return (
     <Container>
       <Select onClick={handleFilterBox}>
-        <Options>Organizar por</Options>
-        <ArrowDown color='gray' />
+        <Options>{selectedOptions}</Options>
+        <ArrowDown color="gray" />
       </Select>
       <FilterBox ref={filterRef} active={filterBox}>
         <Options
-          active={selected === 'Novidades'}
-          onClick={() => handlePriority(FilterPriority.NEWS, 'Novidades', 'DSC')}
+          active={selectedOptions === PriceOrder.NEWS}
+          onClick={() => handlePriority({ type: FilterPriority.NEWS, text: PriceOrder.NEWS, order: 'DSC' })}
         >
-          Novidades
+          {PriceOrder.NEWS}
         </Options>
         <Options
-          active={selected === 'Preço: Maior - menor'}
-          onClick={() => handlePriority(FilterPriority.PRICE, 'Preço: Maior - menor', 'DSC')}
+          active={selectedOptions === PriceOrder.HIGHEST_LOWEST}
+          onClick={() => handlePriority({ type: FilterPriority.PRICE, text: PriceOrder.HIGHEST_LOWEST, order: 'DSC' })}
         >
-          Preço: Maior - menor
+          {PriceOrder.HIGHEST_LOWEST}
         </Options>
         <Options
-          active={selected === 'Preço: Menor - maior'}
-          onClick={() => handlePriority(FilterPriority.PRICE, 'Preço: Menor - maior', 'ASC')}
+          active={selectedOptions === PriceOrder.LOWEST_HIGHEST}
+          onClick={() => handlePriority({ type: FilterPriority.PRICE, text: PriceOrder.LOWEST_HIGHEST, order: 'ASC' })}
         >
-          Preço: Menor - maior
+          {PriceOrder.LOWEST_HIGHEST}
         </Options>
-        <Options active={selected === 'Mais vendidos'} onClick={() => handlePriority(FilterPriority.BEST_SELLER, 'Mais vendidos', 'DSC')}>
-          Mais vendidos
+        <Options
+          active={selectedOptions === PriceOrder.BESTSELLERS}
+          onClick={() =>
+            handlePriority({ type: FilterPriority.BEST_SELLER, text: PriceOrder.BESTSELLERS, order: 'DSC' })
+          }
+        >
+          {PriceOrder.BESTSELLERS}
         </Options>
       </FilterBox>
     </Container>

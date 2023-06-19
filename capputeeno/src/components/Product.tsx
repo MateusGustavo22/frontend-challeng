@@ -4,6 +4,7 @@ import ButtonShoppingIcon from './icons/button-shopping-icon';
 import useProduct from '@/hooks/useProduct';
 import formatPrice from '@/utils/format-price';
 import { categoryNames } from '@/types/types-names';
+import Loading from './Loading';
 
 const Container = styled.div`
   width: 100%;
@@ -15,6 +16,8 @@ const ProductImage = styled.div`
   min-width: 640px;
   height: 580px;
   background-color: gray;
+  border-radius: 8px;
+  overflow: hidden;
 `;
 
 const InfoContainer = styled.div`
@@ -49,7 +52,7 @@ const Price = styled.div`
 `;
 
 const FreighMensage = styled.div`
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: var(--text-dark);
 `;
 
@@ -62,7 +65,7 @@ const DescriptionLabel = styled.span`
 `;
 
 const Description = styled.span`
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-dark);
 `;
 
@@ -81,34 +84,60 @@ const AddCartButton = styled.button`
   font-weight: 500;
   font-size: 1rem;
   font-family: inherit;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #05334f;
+  }
 `;
 
-interface Props {
-  id: string;
+interface ProductProps {
+  productId: string;
 }
 
-export default function Product({ id }: Props) {
-  const productInfo = useProduct(id);
-  console.log(productInfo);
+export default function Product({ productId }: ProductProps) {
+  const { product, loading } = useProduct(productId);
 
-  const category = categoryNames[productInfo?.category as keyof typeof categoryNames];
-  const price = formatPrice(productInfo?.price_in_cents);
+  const category = categoryNames[product?.category as keyof typeof categoryNames];
+  const price = formatPrice(product?.price_in_cents);
+
+  const handleAddToCart = () => {
+    // Verifica se já existe algum item no localStorage
+    const existingItems = localStorage.getItem('cartItems');
+    let cartItems = [];
+
+    if (existingItems) {
+      // Se houver itens no localStorage, converte o JSON para um array
+      cartItems = JSON.parse(existingItems);
+    }
+
+    // Adiciona o product ao array de itens do carrinho
+    cartItems.push(product);
+
+    // Salva o array atualizado no localStorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Container>
       <ProductImage>
-        <img src={productInfo?.image_url} width={640} height={580} alt="Imagem do produto" />
+        <img src={product?.image_url} width={640} height={580} alt="Imagem do produto" />
       </ProductImage>
       <InfoContainer>
         <Info>
           <Category>{category}</Category>
-          <Name>{productInfo?.name}</Name>
+          <Name>{product?.name}</Name>
           <Price>{price ? price : null}</Price>
           <FreighMensage>*Frete de R$40,00 para todo o Brasil. Grátis para compras acima de R$900,00.</FreighMensage>
           <DescriptionLabel>Descrição</DescriptionLabel>
-          <Description>{productInfo?.description}</Description>
+          <Description>{product?.description}</Description>
         </Info>
-        <AddCartButton>
+        <AddCartButton onClick={handleAddToCart}>
           <ButtonShoppingIcon />
           Adicionar ao carrinho
         </AddCartButton>
