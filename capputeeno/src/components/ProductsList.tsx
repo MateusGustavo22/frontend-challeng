@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
 import useProducts from '@/hooks/useProducts';
-import formatPrice from '@/utils/format-price';
+import formatPrice from '@/utils/formatPrice';
 import LoadMore from './LoadMore';
 import Loading from './Loading';
 

@@ -1,8 +1,8 @@
 'use client';
 import styled from 'styled-components';
 import AddProduct from '../AddProduct';
-import formatPrice from '@/utils/format-price';
-import ProductCartType from '@/types/products-cart';
+import formatPrice from '@/utils/formatPrice';
+import Image from 'next/image';
 
 const Container = styled.div`
   max-width: 736px;
@@ -12,17 +12,6 @@ const Container = styled.div`
   display: flex;
   border-radius: 8px;
   overflow: hidden;
-`;
-const ProductImage = styled.div`
-  width: 256px;
-  height: 211px;
-  background-color: gray;
-  flex-shrink: 0;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 const Info = styled.div`
@@ -37,7 +26,7 @@ const Product = styled.div`
   flex-direction: column;
 `;
 
-const ItemsSelected = styled.div`
+const ItemResume = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,18 +63,16 @@ export default function CartProduct({ name, image_url, price_in_cents, descripti
 
   return (
     <Container>
-      <ProductImage>
-        <img src={image_url} alt="Imagem do produto" />
-      </ProductImage>
+        <Image priority width={256} height={211} src={image_url} alt="Imagem do produto" />
       <Product>
         <Info>
           <Name>{name}</Name>
           <Description>{description}</Description>
         </Info>
-        <ItemsSelected>
+        <ItemResume>
           <AddProduct />
           <Price>{priceFormatted}</Price>
-        </ItemsSelected>
+        </ItemResume>
       </Product>
     </Container>
   );

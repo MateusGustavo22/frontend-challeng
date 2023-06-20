@@ -1,13 +1,10 @@
 'use client';
 import BackButton from '@/components/BackButton';
 import ResumeCart from '@/components/Cart/ResumeCart';
-import { CartContext } from '@/context/CartContext';
-import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import CartProduct from './CartProduct';
-import Product from '../Product';
-import formatPrice from '@/utils/format-price';
 import ProductCartType from '@/types/products-cart';
+import { getCartItems } from '@/utils/localStorageUtil';
 
 const Container = styled.div`
   width: 100%;
@@ -53,12 +50,9 @@ const CartSection = styled.span`
 `;
 
 export default function CartContent() {
-  const [products, setProducts] = useState(localStorage.getItem('cartItems')) 
+  const products = getCartItems();
 
- 
-    const moreOneProduct = products?.length > 1 ? true : false;
-  
-  
+  const moreOneProduct = products?.length > 1 ? true : false;
 
   return (
     <Container>
@@ -67,12 +61,13 @@ export default function CartContent() {
         <CartInfo>
           <CartSection>SEU CARRINHO</CartSection>
           <span>
-            Total ({products.length} {moreOneProduct ? 'produtos' : 'produto'}) <Total>{TotalPriceFormatted}</Total>
+            Total ({products.length} {moreOneProduct ? 'produtos' : 'produto'}) <Total>6436</Total>
           </span>
         </CartInfo>
         <ProductList>
           {products.map((item: ProductCartType) => (
             <CartProduct
+              key={item.id}
               name={item.name}
               description={item.description}
               price_in_cents={item.price_in_cents}

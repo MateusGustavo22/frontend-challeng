@@ -1,6 +1,7 @@
 'use client';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Container = styled.div`
   width: 256px;
@@ -9,11 +10,6 @@ const Container = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-
-  img {
-    width: 256px;
-    height: 300px;
-  }
 `;
 
 const Info = styled.div`
@@ -52,7 +48,7 @@ export default function ProductCard({ id, name, image_url, price }: ProductProps
   return (
     <Container>
       <Link href={`/product?id=${id}`}>
-        <img src={image_url} alt='Imagem do produto'/>
+        <Image priority width={252} height={300} src={image_url} alt='Imagem do produto'/>
       </Link>
       <Info>
         <span>{name}</span>

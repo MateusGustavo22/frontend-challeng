@@ -1,6 +1,6 @@
 'use client';
 import { CartContext } from '@/context/CartContext';
-import formatPrice from '@/utils/format-price';
+import formatPrice from '@/utils/formatPrice';
 import { useContext } from 'react';
 import styled from 'styled-components';
 
@@ -17,15 +17,15 @@ const Container = styled.div`
 
 const TopSection = styled.div`
   width: 100%;
-`;
 
-const Resume = styled.span`
-  margin-bottom: 24px;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  display: block;
-  margin-bottom: 30px;
+  .resume {
+    margin-bottom: 24px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: block;
+    margin-bottom: 30px;
+  }
 `;
 
 const BottomSection = styled.div`
@@ -92,10 +92,15 @@ const FinalizeButton = styled.button`
   border: none;
   margin-top: 40px;
   border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #258427;
+  }
 `;
 
 export default function ResumeCart() {
-  const { products, totalPrice } = useContext(CartContext);
+  const { totalPrice } = useContext(CartContext);
   const TotalPriceFormatted = formatPrice(totalPrice);
   const FRETE_IN_CENTS = 40 * 100;
   const totalPriceWithFreight = formatPrice(totalPrice + FRETE_IN_CENTS);
@@ -103,7 +108,7 @@ export default function ResumeCart() {
   return (
     <Container>
       <TopSection>
-        <Resume>RESUMO DO PEDIDO</Resume>
+        <span className="resume">RESUMO DO PEDIDO</span>
         <SubTotal>
           <span>Subtotal de produtos</span>
           <span>{TotalPriceFormatted}</span>

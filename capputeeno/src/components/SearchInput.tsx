@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import SearchIcon from "./icons/search-icon";
-import { FilterContext } from "@/context/FilterContext";
 import { useState, useContext } from "react";
 
 const InputContainer = styled.div`
@@ -40,7 +39,6 @@ const SearchButton = styled.div`
 
 export default function SearchInput() {
   const [inputText, setInputText] = useState('')
-
 
   function handleInput(e:React.ChangeEvent<HTMLInputElement>) {
     setInputText(e.target.value)

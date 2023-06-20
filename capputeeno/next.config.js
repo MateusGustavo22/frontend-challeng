@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compiler: {
-      styledComponents: true
-  }
-}
+    styledComponents: true,
+  },
+  images: {
+    domains: ['storage.googleapis.com'],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

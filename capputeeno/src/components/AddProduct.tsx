@@ -5,18 +5,18 @@ const Container = styled.div`
   width: 65px;
   height: 40px;
   background-color: #f3f5f6;
-  border: 1px solid #A8A8B3;
+  border: 1px solid #a8a8b3;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px 8px 12px;
-`;
 
-const Count = styled.span`
-  font-size: 1rem;
-  color: var(--text-apoio);
-  line-height: 0;
+  span {
+    font-size: 1rem;
+    color: var(--text-apoio);
+    line-height: 0;
+  }
 `;
 
 const AddItem = styled.span`
@@ -30,7 +30,7 @@ const AddItem = styled.span`
 export default function AddProduct() {
   return (
     <Container>
-      <Count>1</Count>
+      <span>1</span>
       <AddItem>+</AddItem>
     </Container>
   );

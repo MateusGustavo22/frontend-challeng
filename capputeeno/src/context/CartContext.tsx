@@ -31,9 +31,8 @@ export default function CartProvider({ children }: Props) {
 
     calculateTotalPrice();
     setTotalItems(products.length);
-    console.log(totalItems)
 
-  }, [products]);
+  }, [products, totalItems]);
 
   return (
     <CartContext.Provider value={{ products, totalItems, totalPrice, setProducts }}>{children}</CartContext.Provider>

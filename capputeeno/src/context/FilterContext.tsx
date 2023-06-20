@@ -21,7 +21,7 @@ export default function FilterProvider({ children }: ProviderProps) {
   const [productsType, setProductsType] = useState(FilterNames.ALL);
   const [productsPriority, setProductsPriority] = useState(FilterPriority.NEWS);
   const [productsOrder, setProductsOrder] = useState('');
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   return (
     <FilterContext.Provider

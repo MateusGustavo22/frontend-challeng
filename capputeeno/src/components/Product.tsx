@@ -2,9 +2,11 @@
 import styled from 'styled-components';
 import ButtonShoppingIcon from './icons/button-shopping-icon';
 import useProduct from '@/hooks/useProduct';
-import formatPrice from '@/utils/format-price';
+import formatPrice from '@/utils/formatPrice';
 import { categoryNames } from '@/types/types-names';
+import { getCartItems, addToCart } from '@/utils/localStorageUtil';
 import Loading from './Loading';
+import Image from 'next/image';
 
 const Container = styled.div`
   width: 100%;
@@ -20,7 +22,7 @@ const ProductImage = styled.div`
   overflow: hidden;
 `;
 
-const InfoContainer = styled.div`
+const ProductIfo = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -103,20 +105,7 @@ export default function Product({ productId }: ProductProps) {
   const price = formatPrice(product?.price_in_cents);
 
   const handleAddToCart = () => {
-    // Verifica se já existe algum item no localStorage
-    const existingItems = localStorage.getItem('cartItems');
-    let cartItems = [];
-
-    if (existingItems) {
-      // Se houver itens no localStorage, converte o JSON para um array
-      cartItems = JSON.parse(existingItems);
-    }
-
-    // Adiciona o product ao array de itens do carrinho
-    cartItems.push(product);
-
-    // Salva o array atualizado no localStorage
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    addToCart(product);
   };
 
   if (loading) {
@@ -126,9 +115,9 @@ export default function Product({ productId }: ProductProps) {
   return (
     <Container>
       <ProductImage>
-        <img src={product?.image_url} width={640} height={580} alt="Imagem do produto" />
+        <Image priority width={640} height={580} src={product?.image_url} alt="Imagem do produto" />
       </ProductImage>
-      <InfoContainer>
+      <ProductIfo>
         <Info>
           <Category>{category}</Category>
           <Name>{product?.name}</Name>
@@ -141,7 +130,7 @@ export default function Product({ productId }: ProductProps) {
           <ButtonShoppingIcon />
           Adicionar ao carrinho
         </AddCartButton>
-      </InfoContainer>
+      </ProductIfo>
     </Container>
   );
 }
