@@ -12,12 +12,6 @@ interface optionsActive {
   active?: boolean;
 }
 
-interface PriorityTypes {
-  type: FilterPriority;
-  text: PriceOrder;
-  order: string;
-}
-
 const Container = styled.div`
   padding: 4px;
   display: flex;
@@ -64,6 +58,12 @@ enum PriceOrder {
   LOWEST_HIGHEST = 'Preço: Menor - maior',
   BESTSELLERS = 'Mais vendidos',
   NEWS = 'Novidades',
+}
+
+interface PriorityTypes {
+  type: FilterPriority;
+  text: PriceOrder;
+  order: string;
 }
 
 export default function FilterByPrice() {

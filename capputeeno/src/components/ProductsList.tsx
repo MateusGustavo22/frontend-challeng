@@ -5,6 +5,7 @@ import useProducts from '@/hooks/useProducts';
 import formatPrice from '@/utils/formatPrice';
 import LoadMore from './LoadMore';
 import Loading from './Loading';
+import { useEffect, useState } from 'react';
 
 const Container = styled.div`
   width: 100%;
@@ -25,6 +26,21 @@ interface ProductType {
 
 export default function ProductList() {
   const { products, loading } = useProducts();
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    setWindowWidth(window.innerWidth);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   if (loading) {
     return <Loading />;
@@ -32,7 +48,7 @@ export default function ProductList() {
 
   return (
     <Container>
-      <LoadMore />
+      {windowWidth > 800 ? <LoadMore /> : null}
       {products.map((item: ProductType) => (
         <ProductCard
           key={item.id}

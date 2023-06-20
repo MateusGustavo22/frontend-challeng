@@ -14,3 +14,10 @@ export enum categoryNames {
   't-shirts' = 'Camiseta',
   'mugs' = 'Caneca',
 }
+
+
+export enum Category {
+  ALL = 'TODOS OS PRODUTOS',
+  TSHIRTS = 'CAMISETAS',
+  MUGS = 'CANECAS',
+}

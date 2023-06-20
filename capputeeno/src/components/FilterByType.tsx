@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { FilterContext } from '@/context/FilterContext';
-import { FilterNames, categoryNames } from '@/types/types-names';
+import { Category, FilterNames, categoryNames } from '@/types/types-names';
+
+interface FilterProps {
+  active: boolean;
+}
 
 const Container = styled.div`
   display: inline-flex;
@@ -17,22 +21,14 @@ const FilterItem = styled.li<FilterProps>`
   border-bottom: ${(props) => (props.active ? '4px solid var(--orange-low)' : 'none')};
   list-style: none;
   cursor: pointer;
-
+  &:hover {
+    color: var(--text-dark);
+  }
   &:hover {
     font-weight: bold;
     color: var(--text-dark);
   }
 `;
-
-interface FilterProps {
-  active: boolean;
-}
-
-enum Category {
-  ALL = 'TODOS OS PRODUTOS',
-  TSHIRTS = 'CAMISETAS',
-  MUGS = 'CANECAS',
-}
 
 export default function FilterByType() {
   const [activeItem, setActiveItem] = useState(Category.ALL);
@@ -46,13 +42,13 @@ export default function FilterByType() {
 
   return (
     <Container>
-      <FilterItem
-        active={activeItem === Category.ALL}
-        onClick={() => handleType(FilterNames.ALL, Category.ALL)}
-      >
+      <FilterItem active={activeItem === Category.ALL} onClick={() => handleType(FilterNames.ALL, Category.ALL)}>
         {Category.ALL}
       </FilterItem>
-      <FilterItem active={activeItem === Category.TSHIRTS} onClick={() => handleType(FilterNames.TSHIRTS, Category.TSHIRTS)}>
+      <FilterItem
+        active={activeItem === Category.TSHIRTS}
+        onClick={() => handleType(FilterNames.TSHIRTS, Category.TSHIRTS)}
+      >
         {Category.TSHIRTS}
       </FilterItem>
       <FilterItem active={activeItem === Category.MUGS} onClick={() => handleType(FilterNames.MUGS, Category.MUGS)}>
