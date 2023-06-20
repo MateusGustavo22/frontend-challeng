@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ButtonShoppingIcon from './icons/button-shopping-icon';
 import useProduct from '@/hooks/useProduct';
 import formatPrice from '@/utils/formatPrice';
-import { categoryNames } from '@/types/types-names';
+import { categoryNames } from '@/types/enum-props';
 import { getCartItems, addToCart } from '@/utils/localStorageUtil';
 import Loading from './Loading';
 import Image from 'next/image';

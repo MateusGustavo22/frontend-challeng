@@ -49,15 +49,17 @@ export default function ProductList() {
   return (
     <Container>
       {windowWidth > 800 ? <LoadMore /> : null}
-      {products.map((item: ProductType) => (
-        <ProductCard
-          key={item.id}
-          id={item.id}
-          name={item.name}
-          image_url={item.image_url}
-          price={formatPrice(item.price_in_cents)}
-        />
-      ))}
+      {products
+        ? products.map((item: ProductType) => (
+            <ProductCard
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              image_url={item.image_url}
+              price={formatPrice(item.price_in_cents)}
+            />
+          ))
+        : null}
       {products ? <LoadMore /> : null}
     </Container>
   );

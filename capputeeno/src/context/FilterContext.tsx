@@ -1,6 +1,6 @@
 'use client';
 import { ReactNode, createContext, useState } from 'react';
-import { FilterNames, FilterPriority } from '@/types/types-names';
+import { FilterNames, FilterPriority } from '@/types/enum-props';
 
 interface ProviderProps {
   children: ReactNode;

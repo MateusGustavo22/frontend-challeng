@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import ArrowDown from './icons/arrow';
 import { useState, useContext, useEffect, useRef } from 'react';
 import { FilterContext } from '@/context/FilterContext';
-import { FilterPriority } from '@/types/types-names';
+import { FilterPriority } from '@/types/enum-props';
 
 interface FilterBoxProps {
   active: boolean;
@@ -18,6 +18,10 @@ const Container = styled.div`
   position: relative;
   align-items: end;
   flex-direction: column;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const Select = styled.div`

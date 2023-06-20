@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { FilterContext } from '@/context/FilterContext';
-import { Category, FilterNames, categoryNames } from '@/types/types-names';
+import { Category, FilterNames, categoryNames } from '@/types/enum-props';
 
 interface FilterProps {
   active: boolean;
@@ -12,6 +12,10 @@ const Container = styled.div`
   display: inline-flex;
   flex: 1;
   gap: 40px;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const FilterItem = styled.li<FilterProps>`

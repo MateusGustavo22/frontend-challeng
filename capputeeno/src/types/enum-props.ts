@@ -15,9 +15,15 @@ export enum categoryNames {
   'mugs' = 'Caneca',
 }
 
-
 export enum Category {
   ALL = 'TODOS OS PRODUTOS',
   TSHIRTS = 'CAMISETAS',
   MUGS = 'CANECAS',
+}
+
+export enum PriceOrder {
+  HIGHEST_LOWEST = 'Preço: Maior - menor',
+  LOWEST_HIGHEST = 'Preço: Menor - maior',
+  BESTSELLERS = 'Mais vendidos',
+  NEWS = 'Novidades',
 }

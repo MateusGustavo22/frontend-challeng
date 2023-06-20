@@ -2,6 +2,9 @@
 import styled from 'styled-components';
 import FilterByType from './FilterByType';
 import FilterByPrice from './FilterByPrice';
+import { useState } from 'react';
+import FilterMobileButton from './FilterMobileButton';
+import FilterMobileMenu from './FilterMobileMenu';
 
 const Container = styled.div`
   width: 100%;
@@ -9,15 +12,19 @@ const Container = styled.div`
   justify-content: space-between;
   margin-top: 34px;
   margin-bottom: 16px;
-
-  @media screen and (max-width: 800px) {
-    display: none;
-  }
 `;
 
 export default function FilterBar() {
+  const [filterMobile, setFilterMobile] = useState(false);
+
+  const handleFilterMobile = () => {
+    setFilterMobile(!filterMobile)
+  };
+  
   return (
     <Container>
+      <FilterMobileButton onClick={handleFilterMobile} >Filtrar produto</FilterMobileButton>
+      <FilterMobileMenu display={filterMobile} />
       <FilterByType />
       <FilterByPrice />
     </Container>
