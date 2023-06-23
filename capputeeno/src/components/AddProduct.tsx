@@ -1,5 +1,6 @@
 'use client';
 import styled from 'styled-components';
+import ArrowDown from './icons/arrow';
 
 const Container = styled.div`
   width: 65px;
@@ -10,12 +11,15 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px 8px 12px;
+  padding-left: 12px;
+  padding-right: 4px;
 
   span {
     font-size: 1rem;
     color: var(--text-apoio);
     line-height: 0;
+
+    background-color: black;
   }
 `;
 
@@ -31,7 +35,15 @@ export default function AddProduct() {
   return (
     <Container>
       <span>1</span>
-      <AddItem>+</AddItem>
+      <ArrowDown color="#737380" />
     </Container>
   );
 }
+
+/* 
+<Container>
+      <span>1</span>
+      <ArrowDown color='#737380' />
+    </Container>
+
+*/

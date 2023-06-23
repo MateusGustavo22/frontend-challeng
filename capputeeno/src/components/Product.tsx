@@ -4,26 +4,42 @@ import ButtonShoppingIcon from './icons/button-shopping-icon';
 import useProduct from '@/hooks/useProduct';
 import formatPrice from '@/utils/formatPrice';
 import { categoryNames } from '@/types/enum-props';
-import { getCartItems, addToCart } from '@/utils/localStorageUtil';
+import { addToCart } from '@/utils/localStorageUtil';
 import Loading from './Loading';
 import Image from 'next/image';
 
 const Container = styled.div`
-  width: 100%;
+width: 100%;
   display: flex;
+  justify-content: center;
   gap: 32px;
+
+  @media screen and (max-width: 1150px) {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
 `;
 
 const ProductImage = styled.div`
-  min-width: 640px;
-  height: 580px;
-  background-color: gray;
+  max-width: 640px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--shapes-light);
   border-radius: 8px;
   overflow: hidden;
+  position: unset !important;
+  flex-shrink: 0;
+
+  img {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+  }
 `;
 
 const ProductIfo = styled.div`
-  width: 100%;
+  max-width: 640px;
   display: flex;
   flex-direction: column;
   display: flex;
@@ -64,6 +80,10 @@ const DescriptionLabel = styled.span`
   color: var(--text-dark);
   margin-top: 58px;
   margin-bottom: 8px;
+
+  @media screen and (max-width: 1150px) {
+    margin-top: 32px;
+  }
 `;
 
 const Description = styled.span`
@@ -92,6 +112,10 @@ const AddCartButton = styled.button`
   &:hover {
     background-color: #05334f;
   }
+
+  @media screen and (max-width: 1150px) {
+    margin-top: 32px;
+  }
 `;
 
 interface ProductProps {
@@ -115,7 +139,7 @@ export default function Product({ productId }: ProductProps) {
   return (
     <Container>
       <ProductImage>
-        <Image priority width={640} height={580} src={product?.image_url} alt="Imagem do produto" />
+        <Image priority fill={true} src={product?.image_url} alt="Imagem do produto" />
       </ProductImage>
       <ProductIfo>
         <Info>

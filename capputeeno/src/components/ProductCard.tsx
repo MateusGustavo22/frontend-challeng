@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const Container = styled.div`
-  width: 256px;
   background-color: white;
   border-radius: 8px;
   overflow: hidden;

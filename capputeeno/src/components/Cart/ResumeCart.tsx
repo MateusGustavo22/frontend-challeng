@@ -6,13 +6,22 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   max-width: 352px;
-  height: 700px;
   width: 100%;
+  height: 700px;
   background-color: white;
   display: flex;
+  position: absolute;
+  right: 0;
   flex-direction: column;
   justify-content: space-between;
   padding: 16px 24px 16px 24px;
+
+  @media screen and (max-width: 1160px) {
+    max-width: 736px;
+    position: relative;
+    height: 100%;
+    gap: 32px;
+  }
 `;
 
 const TopSection = styled.div`
@@ -31,7 +40,6 @@ const TopSection = styled.div`
 const BottomSection = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   bottom: 0;
   gap: 12px;
 

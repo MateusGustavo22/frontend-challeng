@@ -8,6 +8,7 @@ import CartContext from '@/context/CartContext';
 const sairaStencil = Saira_Stencil_One({
   weight: ['400'],
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const HeaderFullArea = styled.div`

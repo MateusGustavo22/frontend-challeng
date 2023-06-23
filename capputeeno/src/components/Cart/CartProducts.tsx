@@ -9,9 +9,13 @@ import { getCartItems } from '@/utils/localStorageUtil';
 const Container = styled.div`
   width: 100%;
   display: flex;
-  gap: 32px;
   margin-top: 30px;
   justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 1160px) {
+    justify-content: center;
+  }
 `;
 
 const CartInfo = styled.div`
@@ -31,14 +35,10 @@ const Total = styled.span`
   color: var(--text-tooltip);
 `;
 
-const CartProducts = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const ProductList = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 32px;
   gap: 16px;
 `;
 
@@ -51,32 +51,30 @@ const CartSection = styled.span`
 
 export default function CartContent() {
   const products = getCartItems();
-
   const moreOneProduct = products?.length > 1 ? true : false;
 
   return (
     <Container>
-      <CartProducts>
+      <CartInfo>
         <BackButton />
-        <CartInfo>
-          <CartSection>SEU CARRINHO</CartSection>
-          <span>
-            Total ({products.length} {moreOneProduct ? 'produtos' : 'produto'}) <Total>6436</Total>
-          </span>
-        </CartInfo>
-        <ProductList>
-          {products.map((item: ProductCartType) => (
-            <CartProduct
-              key={item.id}
-              name={item.name}
-              description={item.description}
-              price_in_cents={item.price_in_cents}
-              image_url={item.image_url}
-            />
-          ))}
-        </ProductList>
-      </CartProducts>
+        <CartSection>SEU CARRINHO</CartSection>
+        <span>
+          Total ({products.length} {moreOneProduct ? 'produtos' : 'produto'}) <Total>6436</Total>
+        </span>
+      </CartInfo>
+      <ProductList>
+        {products.map((item: ProductCartType) => (
+          <CartProduct
+            key={item.id}
+            name={item.name}
+            description={item.description}
+            price_in_cents={item.price_in_cents}
+            image_url={item.image_url}
+          />
+        ))}
+      </ProductList>
       <ResumeCart />
     </Container>
   );
 }
+
