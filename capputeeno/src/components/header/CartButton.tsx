@@ -30,11 +30,10 @@ const Count = styled.span`
 
 export default function CartButton() {
   const { totalItems } = useContext(CartContext);
-  
   return (
     <CartButtonContainer href="/cart">
       <ShoppingIcon />
-      <Count>{totalItems}</Count>
+      {/* <Count>{totalItems}</Count> */}
     </CartButtonContainer>
   );
 }

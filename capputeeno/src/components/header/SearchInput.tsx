@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SearchIcon from "./icons/search-icon";
+import SearchIcon from "../icons/search-icon";
 import { useState, useContext } from "react";
 
 const InputContainer = styled.div`

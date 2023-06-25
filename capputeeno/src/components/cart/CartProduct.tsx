@@ -54,6 +54,12 @@ const Info = styled.div`
   }
 `;
 
+const Remove = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
+
 const Product = styled.div`
   padding: 16px 32px 16px 32px;
   display: flex;
@@ -61,7 +67,7 @@ const Product = styled.div`
 
   @media screen and (max-width: 660px) {
     padding: 12px;
-   }
+  }
 `;
 
 const ItemResume = styled.div`
@@ -77,7 +83,7 @@ const Name = styled.span`
 
   @media screen and (max-width: 660px) {
     font-size: 1rem;
-   }
+  }
 `;
 
 const Description = styled.p`
@@ -88,7 +94,7 @@ const Description = styled.p`
 
   @media screen and (max-width: 660px) {
     font-size: 0.75rem;
-   }
+  }
 `;
 
 const Price = styled.span`
@@ -98,13 +104,15 @@ const Price = styled.span`
 `;
 
 interface Props {
+  id: number;
   name: string;
   image_url: string;
   price_in_cents: number;
   description: string;
+  removeItem: (id: number) => void;
 }
 
-export default function CartProduct({ name, image_url, price_in_cents, description }: Props) {
+export default function CartProduct({ id, name, image_url, price_in_cents, description, removeItem }: Props) {
   const priceFormatted = formatPrice(price_in_cents);
 
   return (
@@ -116,7 +124,9 @@ export default function CartProduct({ name, image_url, price_in_cents, descripti
         <Info>
           <Name>{name}</Name>
           <Description>{description}</Description>
-          <Trash />
+          <Remove onClick={() => removeItem(id)}>
+            <Trash />
+          </Remove>
         </Info>
         <ItemResume>
           <AddProduct />

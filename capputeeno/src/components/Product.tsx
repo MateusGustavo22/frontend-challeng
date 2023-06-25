@@ -4,12 +4,13 @@ import ButtonShoppingIcon from './icons/button-shopping-icon';
 import useProduct from '@/hooks/useProduct';
 import formatPrice from '@/utils/formatPrice';
 import { categoryNames } from '@/types/enum-props';
-import { addToCart } from '@/utils/localStorageUtil';
 import Loading from './Loading';
 import Image from 'next/image';
+import { addToCart } from '@/utils/addToCart';
+
 
 const Container = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   gap: 32px;
@@ -128,8 +129,13 @@ export default function Product({ productId }: ProductProps) {
   const category = categoryNames[product?.category as keyof typeof categoryNames];
   const price = formatPrice(product?.price_in_cents);
 
+  const productCart = {
+    ...product,
+    quantity: 1,
+  };
+
   const handleAddToCart = () => {
-    addToCart(product);
+    addToCart(productCart);
   };
 
   if (loading) {

@@ -107,8 +107,11 @@ const FinalizeButton = styled.button`
   }
 `;
 
-export default function ResumeCart() {
-  const { totalPrice } = useContext(CartContext);
+interface ResumeCartProps {
+  totalPrice: number;
+}
+
+export default function ResumeCart({ totalPrice }: ResumeCartProps) {
   const TotalPriceFormatted = formatPrice(totalPrice);
   const FRETE_IN_CENTS = 40 * 100;
   const totalPriceWithFreight = formatPrice(totalPrice + FRETE_IN_CENTS);

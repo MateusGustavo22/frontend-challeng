@@ -39,11 +39,3 @@ export default function AddProduct() {
     </Container>
   );
 }
-
-/* 
-<Container>
-      <span>1</span>
-      <ArrowDown color='#737380' />
-    </Container>
-
-*/

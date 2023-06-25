@@ -1,10 +1,10 @@
 'use client';
 import BackButton from '@/components/BackButton';
-import ResumeCart from '@/components/Cart/ResumeCart';
+import ResumeCart from '@/components/cart/ResumeCart';
 import styled from 'styled-components';
 import CartProduct from './CartProduct';
 import ProductCartType from '@/types/products-cart';
-import { getCartItems } from '@/utils/localStorageUtil';
+import formatPrice from '@/utils/formatPrice';
 
 const Container = styled.div`
   width: 100%;
@@ -49,9 +49,14 @@ const CartSection = styled.span`
   margin-bottom: 6px;
 `;
 
-export default function CartContent() {
-  const products = getCartItems();
-  const moreOneProduct = products?.length > 1 ? true : false;
+interface CartProductProps {
+  cartItems: ProductCartType[];
+  removeItem: (id: number) => void;
+}
+
+export default function CartProducts({ cartItems, removeItem }: CartProductProps) {
+  const totalPrice = cartItems.reduce((total, item) => total + item.price_in_cents, 0);
+  const formattedPrice = formatPrice(totalPrice)
 
   return (
     <Container>
@@ -59,22 +64,23 @@ export default function CartContent() {
         <BackButton />
         <CartSection>SEU CARRINHO</CartSection>
         <span>
-          Total ({products.length} {moreOneProduct ? 'produtos' : 'produto'}) <Total>6436</Total>
+          Total ({cartItems.length} {cartItems.length > 1 ? 'produtos' : 'produto'}) <Total>{formattedPrice}</Total> 
         </span>
       </CartInfo>
       <ProductList>
-        {products.map((item: ProductCartType) => (
+        {cartItems.map((item: ProductCartType) => (
           <CartProduct
             key={item.id}
+            id={item.id}
             name={item.name}
             description={item.description}
             price_in_cents={item.price_in_cents}
             image_url={item.image_url}
+            removeItem={removeItem}
           />
         ))}
       </ProductList>
-      <ResumeCart />
+      <ResumeCart totalPrice={totalPrice}/>
     </Container>
   );
 }
-

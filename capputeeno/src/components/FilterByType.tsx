@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { FilterContext } from '@/context/FilterContext';
-import { Category, FilterNames, categoryNames } from '@/types/enum-props';
+import { Category, FilterTypes, categoryNames } from '@/types/enum-props';
 
 interface FilterProps {
   active: boolean;
@@ -39,23 +39,23 @@ export default function FilterByType() {
 
   const { setProductsType } = useContext(FilterContext);
 
-  function handleType(type: FilterNames, text: Category) {
+  function handleType(type: FilterTypes, text: Category) {
     setActiveItem(text);
     setProductsType(type);
   }
 
   return (
     <Container>
-      <FilterItem active={activeItem === Category.ALL} onClick={() => handleType(FilterNames.ALL, Category.ALL)}>
+      <FilterItem active={activeItem === Category.ALL} onClick={() => handleType(FilterTypes.ALL, Category.ALL)}>
         {Category.ALL}
       </FilterItem>
       <FilterItem
         active={activeItem === Category.TSHIRTS}
-        onClick={() => handleType(FilterNames.TSHIRTS, Category.TSHIRTS)}
+        onClick={() => handleType(FilterTypes.TSHIRTS, Category.TSHIRTS)}
       >
         {Category.TSHIRTS}
       </FilterItem>
-      <FilterItem active={activeItem === Category.MUGS} onClick={() => handleType(FilterNames.MUGS, Category.MUGS)}>
+      <FilterItem active={activeItem === Category.MUGS} onClick={() => handleType(FilterTypes.MUGS, Category.MUGS)}>
         {Category.MUGS}
       </FilterItem>
     </Container>

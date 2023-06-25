@@ -1,6 +1,6 @@
 'use client';
 import { FilterContext } from '@/context/FilterContext';
-import { Category, FilterNames, FilterPriority, PriceOrder } from '@/types/enum-props';
+import { Category, FilterTypes, FilterPriority, PriceOrder } from '@/types/enum-props';
 import { useContext, useState } from 'react';
 import styled from 'styled-components';
 
@@ -67,7 +67,7 @@ export default function FilterMobileMenu({ display }: MobileMenuProps) {
   const { setProductsType } = useContext(FilterContext);
   const { setProductsPriority, setProductsOrder } = useContext(FilterContext);
 
-  function handleType(type: FilterNames, text: Category) {
+  function handleType(type: FilterTypes, text: Category) {
     setActiveItem(text);
     setProductsType(type);
   }
@@ -82,16 +82,16 @@ export default function FilterMobileMenu({ display }: MobileMenuProps) {
     <Container>
       <MenuMobile display={display}>
         <Section>
-          <Options active={activeItem === Category.ALL} onClick={() => handleType(FilterNames.ALL, Category.ALL)}>
+          <Options active={activeItem === Category.ALL} onClick={() => handleType(FilterTypes.ALL, Category.ALL)}>
             {Category.ALL}
           </Options>
           <Options
             active={activeItem === Category.TSHIRTS}
-            onClick={() => handleType(FilterNames.TSHIRTS, Category.TSHIRTS)}
+            onClick={() => handleType(FilterTypes.TSHIRTS, Category.TSHIRTS)}
           >
             {Category.TSHIRTS}
           </Options>
-          <Options active={activeItem === Category.MUGS} onClick={() => handleType(FilterNames.MUGS, Category.MUGS)}>
+          <Options active={activeItem === Category.MUGS} onClick={() => handleType(FilterTypes.MUGS, Category.MUGS)}>
             {Category.MUGS}
           </Options>
         </Section>
