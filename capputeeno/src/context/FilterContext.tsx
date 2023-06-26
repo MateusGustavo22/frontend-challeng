@@ -1,5 +1,5 @@
 'use client';
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 import { FilterTypes, FilterPriority } from '@/types/enum-props';
 
 interface ProviderProps {
@@ -11,6 +11,8 @@ export const FilterContext = createContext({
   productsPriority: FilterPriority.NEWS,
   productsOrder: '',
   page: 0,
+  searchTerm: '',
+  setSearchTerm: (value: string) => {},
   setProductsType: (value: FilterTypes) => {},
   setProductsPriority: (value: FilterPriority) => {},
   setProductsOrder: (value: string) => {},
@@ -22,6 +24,7 @@ export default function FilterProvider({ children }: ProviderProps) {
   const [productsPriority, setProductsPriority] = useState(FilterPriority.NEWS);
   const [productsOrder, setProductsOrder] = useState('');
   const [page, setPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <FilterContext.Provider
@@ -30,6 +33,8 @@ export default function FilterProvider({ children }: ProviderProps) {
         productsPriority,
         productsOrder,
         page,
+        searchTerm,
+        setSearchTerm,
         setProductsType,
         setProductsPriority,
         setProductsOrder,

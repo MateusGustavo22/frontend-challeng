@@ -1,9 +1,11 @@
-import { useQuery, gql } from "@apollo/client";
-import { useContext } from "react";
-import { FilterContext } from "@/context/FilterContext";
+import { useQuery, gql } from '@apollo/client';
+import { useContext, useDeferredValue, useEffect } from 'react';
+import { FilterContext } from '@/context/FilterContext';
+import ProductCartType from '@/types/products-cart';
 
 export default function useProducts() {
-  const {productsType, productsPriority, productsOrder, page} = useContext(FilterContext)
+  const { productsType, productsPriority, productsOrder, page, searchTerm } = useContext(FilterContext);
+  const searchDeferred = useDeferredValue(searchTerm);
 
   const ALL_PRODUCTS_QUERY = `query {
     allProducts(sortField: "${productsPriority}", sortOrder: "${productsOrder}", page: ${page} perPage: 20) {
@@ -31,5 +33,11 @@ export default function useProducts() {
 
   const { data, loading } = useQuery(QUERY);
 
-  return {products: data?.allProducts, loading}
+  let filteredProducts = data?.allProducts || [];
+  if (searchDeferred) {
+    const searchLower = searchDeferred.toLowerCase();
+    filteredProducts = filteredProducts.filter((product: ProductCartType) => product.name.toLowerCase().includes(searchLower));
+  }
+
+  return { products: filteredProducts, loading };
 }

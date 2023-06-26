@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import SearchIcon from '../icons/search-icon';
 import { useContext } from 'react';
-import { SearchContext } from '@/context/SearchContext';
+import { FilterContext } from '@/context/FilterContext';
 
 
 const InputContainer = styled.div`
@@ -44,7 +44,7 @@ const SearchButton = styled.div`
 `;
 
 export default function SearchInput() {
-  const { searchTerm, setSearchTerm } = useContext(SearchContext);
+  const { searchTerm, setSearchTerm } = useContext(FilterContext);
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchTerm(e.target.value);

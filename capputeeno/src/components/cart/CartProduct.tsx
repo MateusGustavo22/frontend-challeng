@@ -10,7 +10,7 @@ const Container = styled.div`
   max-height: 211px;
   border-radius: 8px;
   overflow: hidden;
-  background-color: white;
+  background-color: black;
   position: relative;
   display: flex;
   border-radius: 8px;
@@ -78,6 +78,7 @@ const ItemResume = styled.div`
 `;
 
 const Name = styled.span`
+  max-width: 180px;
   font-size: 1.25rem;
   color: var(--text-dark);
 
