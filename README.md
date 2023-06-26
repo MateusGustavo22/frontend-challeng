@@ -50,7 +50,7 @@ Inicie a api graphQL
 npm run start
 ```
 
-Deixe a API rodando e, em outro terminal, entre na pasta capputeeno e instale as dependências.
+Deixe a API rodando e, em outro terminal, entre na pasta `capputeeno` e instale as dependências.
 
 
 ```bash
