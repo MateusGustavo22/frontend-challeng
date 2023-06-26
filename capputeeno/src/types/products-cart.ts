@@ -3,6 +3,6 @@ export default interface ProductCartType {
   name: string;
   image_url: string;
   price_in_cents: number;
-  description: string,
+  description: string;
   quantity: number;
 }

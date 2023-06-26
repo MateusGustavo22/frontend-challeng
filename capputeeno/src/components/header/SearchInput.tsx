@@ -3,7 +3,6 @@ import SearchIcon from '../icons/search-icon';
 import { useContext } from 'react';
 import { FilterContext } from '@/context/FilterContext';
 
-
 const InputContainer = styled.div`
   max-width: 352px;
   width: 100%;

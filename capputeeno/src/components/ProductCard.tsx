@@ -9,6 +9,11 @@ const Container = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.1s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
 `;
 
 const Info = styled.div`
@@ -47,7 +52,7 @@ export default function ProductCard({ id, name, image_url, price }: ProductProps
   return (
     <Container>
       <Link href={`/product?id=${id}`}>
-        <Image priority width={252} height={300} src={image_url} alt='Imagem do produto'/>
+        <Image priority width={252} height={300} src={image_url} alt="Imagem do produto" />
       </Link>
       <Info>
         <span>{name}</span>

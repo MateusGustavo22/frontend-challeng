@@ -10,18 +10,14 @@ const Container = styled.div`
   max-height: 211px;
   border-radius: 8px;
   overflow: hidden;
-  background-color: black;
+  background-color: white;
   position: relative;
   display: flex;
   border-radius: 8px;
-
-  @media screen and (max-width: 660px) {
-    max-height: 300px;
-    padding: 4px;
-  }
+  width: 100%;
 `;
 
-const ProductImage = styled.div`
+const ProductImage = styled.a`
   max-width: 256px;
   width: 100%;
   position: unset !important;
@@ -34,11 +30,10 @@ const ProductImage = styled.div`
     height: unset !important;
   }
 
-  @media screen and (max-width: 660px) {
+  @media screen and (max-width: 768px) {
     overflow: hidden;
     border-radius: 4px;
-    max-width: 100px;
-    height: 90px;
+    width: 110px;
   }
 `;
 
@@ -58,9 +53,12 @@ const Remove = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 5;
+  cursor: pointer;
 `;
 
 const Product = styled.div`
+  width: 100%;
   padding: 16px 32px 16px 32px;
   display: flex;
   flex-direction: column;
@@ -78,13 +76,8 @@ const ItemResume = styled.div`
 `;
 
 const Name = styled.span`
-  max-width: 180px;
   font-size: 1.25rem;
   color: var(--text-dark);
-
-  @media screen and (max-width: 660px) {
-    font-size: 1rem;
-  }
 `;
 
 const Description = styled.p`
@@ -93,8 +86,8 @@ const Description = styled.p`
   font-size: 0.8125rem;
   color: var(--text-dark);
 
-  @media screen and (max-width: 660px) {
-    font-size: 0.75rem;
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -118,7 +111,7 @@ export default function CartProduct({ id, name, image_url, price_in_cents, descr
 
   return (
     <Container>
-      <ProductImage>
+      <ProductImage href={`/product?id=${id}`}>
         <Image priority fill={true} src={image_url} alt="Imagem do produto" />
       </ProductImage>
       <Product>

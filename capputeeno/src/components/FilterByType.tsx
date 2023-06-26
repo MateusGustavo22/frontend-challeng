@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { FilterContext } from '@/context/FilterContext';
-import { Category, FilterTypes, categoryNames } from '@/types/enum-props';
+import { Category, FilterTypes } from '@/types/enum-props';
 
 interface FilterProps {
   active: boolean;

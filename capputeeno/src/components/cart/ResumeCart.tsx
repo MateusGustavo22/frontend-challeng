@@ -1,7 +1,5 @@
 'use client';
-import { CartContext } from '@/context/CartContext';
 import formatPrice from '@/utils/formatPrice';
-import { useContext } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -109,12 +107,14 @@ const FinalizeButton = styled.button`
 
 interface ResumeCartProps {
   totalPrice: number;
+  isLoading: boolean;
 }
 
-export default function ResumeCart({ totalPrice }: ResumeCartProps) {
+export default function ResumeCart({ totalPrice, isLoading }: ResumeCartProps) {
   const TotalPriceFormatted = formatPrice(totalPrice);
-  const FRETE_IN_CENTS = 40 * 100;
+  const FRETE_IN_CENTS = isLoading ? 0 : 40 * 100;
   const totalPriceWithFreight = formatPrice(totalPrice + FRETE_IN_CENTS);
+  const parsedFrete = formatPrice(FRETE_IN_CENTS);
 
   return (
     <Container>
@@ -126,12 +126,12 @@ export default function ResumeCart({ totalPrice }: ResumeCartProps) {
         </SubTotal>
         <Delivery>
           <span>Entrega</span>
-          <span>R$ 40,00</span>
+          <span>{totalPrice > 0 ? parsedFrete : 'R$ 0,00'}</span>
         </Delivery>
         <Line />
         <Total>
           <span>Total</span>
-          <span>{totalPriceWithFreight}</span>
+          <span>{totalPrice > 0 ? totalPriceWithFreight : 'R$ 0,00'}</span>
         </Total>
         <FinalizeButton>FINALIZAR A COMPRA</FinalizeButton>
       </TopSection>

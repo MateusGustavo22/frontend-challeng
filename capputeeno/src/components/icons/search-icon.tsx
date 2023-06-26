@@ -1,12 +1,6 @@
 export default function SearchIcon() {
   return (
-    <svg
-      width="26"
-      height="26"
-      viewBox="0 0 26 26"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle
         cx="12.059"
         cy="12.0586"

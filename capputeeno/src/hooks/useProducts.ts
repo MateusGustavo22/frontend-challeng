@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
-import { useContext, useDeferredValue, useEffect } from 'react';
+import { useContext, useDeferredValue } from 'react';
 import { FilterContext } from '@/context/FilterContext';
 import ProductCartType from '@/types/products-cart';
 
@@ -36,7 +36,9 @@ export default function useProducts() {
   let filteredProducts = data?.allProducts || [];
   if (searchDeferred) {
     const searchLower = searchDeferred.toLowerCase();
-    filteredProducts = filteredProducts.filter((product: ProductCartType) => product.name.toLowerCase().includes(searchLower));
+    filteredProducts = filteredProducts.filter((product: ProductCartType) =>
+      product.name.toLowerCase().includes(searchLower),
+    );
   }
 
   return { products: filteredProducts, loading };

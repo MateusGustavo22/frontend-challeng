@@ -18,12 +18,12 @@ export default function FilterBar() {
   const [filterMobile, setFilterMobile] = useState(false);
 
   const handleFilterMobile = () => {
-    setFilterMobile(!filterMobile)
+    setFilterMobile(!filterMobile);
   };
-  
+
   return (
     <Container>
-      <FilterMobileButton onClick={handleFilterMobile} >Filtrar produto</FilterMobileButton>
+      <FilterMobileButton onClick={handleFilterMobile}>Filtrar produto</FilterMobileButton>
       <FilterMobileMenu display={filterMobile} />
       <FilterByType />
       <FilterByPrice />

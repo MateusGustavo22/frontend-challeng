@@ -1,14 +1,18 @@
 'use client';
 import styled from 'styled-components';
 import ShoppingIcon from '../icons/shopping-icon';
-import { useContext } from 'react';
-import { CartContext } from '@/context/CartContext';
 
 const CartButtonContainer = styled.a`
   padding: 4px;
   display: flex;
   position: relative;
   cursor: pointer;
+  align-items: center;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
+  }
 `;
 
 const Count = styled.span`
@@ -29,7 +33,6 @@ const Count = styled.span`
 `;
 
 export default function CartButton() {
-  const { totalItems } = useContext(CartContext);
   return (
     <CartButtonContainer href="/cart">
       <ShoppingIcon />

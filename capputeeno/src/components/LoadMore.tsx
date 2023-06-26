@@ -69,7 +69,6 @@ const NextPage = styled.div<ButtonProps>`
   }
 `;
 
-
 export default function LoadMore() {
   const { page, setPage } = useContext(FilterContext);
 

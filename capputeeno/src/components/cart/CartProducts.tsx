@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import CartProduct from './CartProduct';
 import ProductCartType from '@/types/products-cart';
 import formatPrice from '@/utils/formatPrice';
+import Loading from '../Loading';
 
 const Container = styled.div`
   width: 100%;
@@ -36,10 +37,15 @@ const Total = styled.span`
 `;
 
 const ProductList = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 32px;
   gap: 16px;
+
+  @media screen and (max-width: 1161px) {
+    align-items: center;
+  }
 `;
 
 const CartSection = styled.span`
@@ -51,12 +57,13 @@ const CartSection = styled.span`
 
 interface CartProductProps {
   cartItems: ProductCartType[];
+  isLoading: boolean;
   removeItem: (id: number) => void;
 }
 
-export default function CartProducts({ cartItems, removeItem }: CartProductProps) {
+export default function CartProducts({ cartItems, isLoading, removeItem }: CartProductProps) {
   const totalPrice = cartItems.reduce((total, item) => total + item.price_in_cents, 0);
-  const formattedPrice = formatPrice(totalPrice)
+  const formattedPrice = formatPrice(totalPrice);
 
   return (
     <Container>
@@ -64,10 +71,11 @@ export default function CartProducts({ cartItems, removeItem }: CartProductProps
         <BackButton />
         <CartSection>SEU CARRINHO</CartSection>
         <span>
-          Total ({cartItems.length} {cartItems.length > 1 ? 'produtos' : 'produto'}) <Total>{formattedPrice}</Total> 
+          Total ({cartItems.length} {cartItems.length > 1 ? 'produtos' : 'produto'}) <Total>{formattedPrice}</Total>
         </span>
       </CartInfo>
       <ProductList>
+        {isLoading ? <Loading /> : null}
         {cartItems.map((item: ProductCartType) => (
           <CartProduct
             key={item.id}
@@ -80,7 +88,7 @@ export default function CartProducts({ cartItems, removeItem }: CartProductProps
           />
         ))}
       </ProductList>
-      <ResumeCart totalPrice={totalPrice}/>
+      <ResumeCart totalPrice={totalPrice} isLoading={isLoading} />
     </Container>
   );
 }

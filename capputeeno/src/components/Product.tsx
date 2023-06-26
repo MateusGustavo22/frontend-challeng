@@ -8,7 +8,6 @@ import Loading from './Loading';
 import Image from 'next/image';
 import { addToCart } from '@/utils/addToCart';
 
-
 const Container = styled.div`
   width: 100%;
   display: flex;

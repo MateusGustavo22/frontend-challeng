@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ArrowDown from './icons/arrow';
-import { useState, useContext, useEffect, useRef } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { FilterContext } from '@/context/FilterContext';
 import { FilterPriority } from '@/types/enum-props';
 
@@ -78,7 +78,7 @@ export default function FilterByPrice() {
   const { setProductsPriority, setProductsOrder } = useContext(FilterContext);
 
   function handleFilterBox() {
-    setFilterBox(!filterBox)
+    setFilterBox(!filterBox);
   }
 
   function handlePriority({ type, text, order }: PriorityTypes) {

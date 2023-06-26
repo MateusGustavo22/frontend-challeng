@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Saira_Stencil_One } from 'next/font/google';
 import SearchInput from './SearchInput';
 import CartButton from './CartButton';
-import FilterProvider from '@/context/FilterContext';
 
 const sairaStencil = Saira_Stencil_One({
   weight: ['400'],
@@ -72,20 +71,18 @@ const RightSection = styled.div`
 
 export default function Header() {
   return (
- 
-      <HeaderFullArea>
-        <MaxContentWidth>
-          <LeftSection>
-            <Logo className={sairaStencil.className} href="/">
-              Capputeeno
-            </Logo>
-          </LeftSection>
-          <RightSection>
-            <SearchInput />
-            <CartButton />
-          </RightSection>
-        </MaxContentWidth>
-      </HeaderFullArea>
-   
+    <HeaderFullArea>
+      <MaxContentWidth>
+        <LeftSection>
+          <Logo className={sairaStencil.className} href="/">
+            Capputeeno
+          </Logo>
+        </LeftSection>
+        <RightSection>
+          <SearchInput />
+          <CartButton />
+        </RightSection>
+      </MaxContentWidth>
+    </HeaderFullArea>
   );
 }
