@@ -1,6 +1,8 @@
-import styled from "styled-components";
-import SearchIcon from "../icons/search-icon";
-import { useState, useContext } from "react";
+import styled from 'styled-components';
+import SearchIcon from '../icons/search-icon';
+import { useContext } from 'react';
+import { SearchContext } from '@/context/SearchContext';
+
 
 const InputContainer = styled.div`
   max-width: 352px;
@@ -12,7 +14,11 @@ const InputContainer = styled.div`
   align-items: center;
 
   &:focus-within {
-    border: 2px solid var(--orange-low);
+    border: 2px solid #3498db;
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 1000px;
   }
 `;
 
@@ -38,18 +44,24 @@ const SearchButton = styled.div`
 `;
 
 export default function SearchInput() {
-  const [inputText, setInputText] = useState('')
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
 
-  function handleInput(e:React.ChangeEvent<HTMLInputElement>) {
-    setInputText(e.target.value)
+  function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchTerm(e.target.value);
   }
 
   return (
-    <InputContainer>
-      <InputSearch value={inputText} onChange={handleInput} placeholder="Procurando por algo específico?"></InputSearch>
-      <SearchButton>
-        <SearchIcon />
-      </SearchButton>
-    </InputContainer>
+    <>
+      <InputContainer>
+        <InputSearch
+          value={searchTerm}
+          onChange={handleInput}
+          placeholder="Procurando por algo específico?"
+        ></InputSearch>
+        <SearchButton>
+          <SearchIcon />
+        </SearchButton>
+      </InputContainer>
+    </>
   );
 }
