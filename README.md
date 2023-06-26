@@ -21,9 +21,12 @@ O projeto consiste em um desafio front-end proposto pela Rocketseat, que envolve
 
 # 📷 Screenshots do projeto
   
-![Protótipo](https://storage.googleapis.com/xesque-dev/challenge-images/prototipo.png?42)
+![Protótipo](https://github.com/MateusGustavo22/frontend-challeng/blob/main/capputeeno/public/screenshots/Captura%20de%20tela%20de%202023-06-26%2014-54-41%201.png)
+![Protótipo](https://github.com/MateusGustavo22/frontend-challeng/blob/main/capputeeno/public/screenshots/Captura%20de%20tela%20de%202023-06-26%2016-20-04.png)
+![Protótipo](https://github.com/MateusGustavo22/frontend-challeng/blob/main/capputeeno/public/screenshots/Captura%20de%20tela%20de%202023-06-26%2014-55-30%201.png)
+![Protótipo](https://github.com/MateusGustavo22/frontend-challeng/blob/main/capputeeno/public/screenshots/Frame%2098.png)
 
-# Rode o projeto em sua máquina
+# Execute o projeto em sua máquina
 
 Clone o projeto
 
