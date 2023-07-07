@@ -5,7 +5,7 @@ O projeto consiste em um desafio front-end proposto pela Rocketseat, que envolve
 # ✅ Funcionalidades 
 
 - Campo para pesquisar pelo nome do produto
-- Filtragem por tipo do produto (Camisas ou Canecas)
+- Filtragem por tipo dos produtos (Camisas ou Canecas)
 - Filtragem por prioridade (Novidades, mais vendidos e preço)
 - Sistema de paginação
 - Opção para adicionar produto ao carrinho
